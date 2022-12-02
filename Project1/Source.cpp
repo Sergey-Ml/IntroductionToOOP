@@ -26,14 +26,16 @@ void FillRand(int *array, int j)
 
 }
 
+
 void Print(int* arr, int j)
 {
-for (int i = 0; i < j; i++)
+	for (int i = 0; i < j; i++)
 	{
 		cout << arr[i] << "\t";
 	}
 
 }
+
 
 
 int* push_back(int* array, int j, int k)
@@ -81,33 +83,6 @@ int main()
 	arr = push_back(arr, j, l);
 	Print(arr, j+1);
 	///////////////////////////////////////////////////////////////
-	//int chetn = 0;
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	if (arr[i] % 2 == 0)
-	//		chetn++;
-	//}
-	//int* array_nech = new int[10 - chetn];
-	//int* array_chetn = new int[chetn];
-	//int x = 0; int y = 0;
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	if (arr[i] % 2 == 0)
-	//	{
-	//		array_chetn[x] = arr[i];                      ////////// Разбиение на массивы
-	//		x++;
-	//	}
-	//	
-	//	else
-	//	{
-	//		array_nech[y] = arr[i];
-	//		y++;
-	//	}
-	//
-	//}
-	//cout << endl;
-	//Print(array_nech, 10-chetn);
-	//cout << endl;
-	//Print(array_chetn, chetn);
+
 }
 ////////////////////////////////////////////////////////////////////////////
