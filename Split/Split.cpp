@@ -20,21 +20,24 @@ int main()
 
 
 	int chetn = 0;
-for (int i = 0; i < 10; i++)
+for (int i = 0; i < j; i++)
 {
 	if (arr[i] % 2 == 0)
 		chetn++;
 }
-int* array_nech = new int[10 - chetn];
+
+int* array_nech = new int[j - chetn];
 int* array_chetn = new int[chetn];
+
+
 int x = 0; int y = 0;
-for (int i = 0; i < 10; i++)
+for (int i = 0; i < j; i++)
 {
 	if (arr[i] % 2 == 0)
 	{
 		array_chetn[x] = arr[i];                      
 		x++;
-	}
+	} 
 	
 	else
 	{
@@ -44,7 +47,7 @@ for (int i = 0; i < 10; i++)
 
 }
 cout << endl;
-Print(array_nech, 10-chetn);
+Print(array_nech, j-chetn);
 cout << endl;
 Print(array_chetn, chetn);
 }
