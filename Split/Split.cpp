@@ -20,36 +20,37 @@ int main()
 
 
 	int chetn = 0;
-for (int i = 0; i < j; i++)
-{
-	if (arr[i] % 2 == 0)
-		chetn++;
-}
-
-int* array_nech = new int[j - chetn];
-int* array_chetn = new int[chetn];
-
-
-int x = 0; int y = 0;
-for (int i = 0; i < j; i++)
-{
-	if (arr[i] % 2 == 0)
+	for (int i = 0; i < j; i++)
 	{
-		array_chetn[x] = arr[i];                      
-		x++;
-	} 
-	
-	else
-	{
-		array_nech[y] = arr[i];
-		y++;
+		if (arr[i] % 2 == 0)
+			chetn++;
 	}
 
-}
-cout << endl;
-Print(array_nech, j-chetn);
-cout << endl;
-Print(array_chetn, chetn);
+	int* array_nech = new int[j - chetn];
+	int* array_chetn = new int[chetn];
+
+
+	int x = 0; int y = 0;
+	for (int i = 0; i < j; i++)
+	{
+		/*if (arr[i] % 2 == 0)
+		{
+			array_chetn[x] = arr[i];
+			x++;
+		}
+
+		else
+		{
+			array_nech[y] = arr[i];
+			y++;
+		}*/
+		(arr[i] % 2 == 0 ? array_chetn[x++] : array_nech[y++]) = arr[i];
+
+	}
+	cout << endl;
+	Print(array_nech, j - chetn);
+	cout << endl;
+	Print(array_chetn, chetn);
 }
 
 void FillRand(int* array, int j)
