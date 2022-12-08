@@ -361,10 +361,7 @@ template<typename T> void Print(T** array, int ROWS, int COLLS)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
-		for (int j = 0; j < COLLS; j++)
-		{
-			cout << array[i][j] << "\t";
-		}
+		Print(array[i], COLLS);
 		cout << endl;
 	}
 	
