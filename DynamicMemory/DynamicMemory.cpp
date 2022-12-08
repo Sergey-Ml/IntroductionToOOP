@@ -4,33 +4,33 @@
 using namespace std;
 
 // Одномерные 
-void FillRand(int* array, int j);
-void Print(int* array, int j);
+template<typename T> void FillRand(T* array, int j);
+template<typename T> void Print(T* array, int j);
 
-int* push_back(int* array, int &j, int k);
-int* push_front(int* array, int &j, int k);
-int* insert(int* array, int& j, int k, int ind);
-int* pop_back(int* array, int& j);
-int* pop_front(int* array, int& j);
-int* erase(int* array, int& j, int ind);
+template<typename T> T* push_back(T* array, int &j, int k);
+template<typename T> T* push_front(T* array, int &j, int k);
+template<typename T> T* insert(T* array, int& j, int k, int ind);
+template<typename T> T* pop_back(T* array, int& j);
+template<typename T> T* pop_front(T* array, int& j);
+template<typename T> T* erase(T* array, int& j, int ind);
 
 // Двумерные
-void FillRand(int** array, int ROWS, int COLLS);
-void Print(int** array, int ROWS, int COLLS);
+template<typename T> void FillRand(T** array, int ROWS, int COLLS);
+template<typename T> void Print(T** array, int ROWS, int COLLS);
 
-int** push_row_back(int** array, int &ROWS, int COLLS);
-int** push_row_front(int** array, int &ROWS, int COLLS);
-int** pop_row_back(int** array, int& ROWS, int COLLS);
-int** pop_row_front(int** array, int& ROWS, int COLLS);
-int** insert_row(int** array, int &ROWS, int COLLS, int index);
-int** erase_row(int** array, int& ROWS, int COLLS, int index);
+template<typename T> T** push_row_back(T** array, int &ROWS, int COLLS);
+template<typename T> T** push_row_front(T** array, int &ROWS, int COLLS);
+template<typename T> T** pop_row_back(T** array, int& ROWS, int COLLS);
+template<typename T> T** pop_row_front(T** array, int& ROWS, int COLLS);
+template<typename T> T** insert_row(T** array, int &ROWS, int COLLS, int index);
+template<typename T> T** erase_row(T** array, int& ROWS, int COLLS, int index);
 
-int** push_col_back(int** array, int ROWS, int &COLLS);
-int** push_col_front(int** array, int ROWS, int& COLLS);
-int** pop_col_back(int** array, int ROWS, int& COLLS);
-int** pop_col_front(int** array, int ROWS, int& COLLS);
-int** insert_col(int** array, int ROWS, int& COLLS, int index);
-int** erase_col(int** array, int ROWS, int& COLLS, int index);
+template<typename T> T** push_col_back(T** array, int ROWS, int &COLLS);
+template<typename T> T** push_col_front(T** array, int ROWS, int& COLLS);
+template<typename T> T** pop_col_back(T** array, int ROWS, int& COLLS);
+template<typename T> T** pop_col_front(T** array, int ROWS, int& COLLS);
+template<typename T> T** insert_col(T** array, int ROWS, int& COLLS, int index);
+template<typename T> T** erase_col(T** array, int ROWS, int& COLLS, int index);
 
 
 int main()
@@ -230,7 +230,7 @@ int main()
 
 // Одномерные
 
-void FillRand(int* array, int j)
+template <typename T> void FillRand(T* array, int j)
 {
 	for (int i = 0; i < j; i++)
 		array[i] = rand();
@@ -238,7 +238,7 @@ void FillRand(int* array, int j)
 }
 
 
-void Print(int* arr, int j)
+template<typename T> void Print(T* arr, int j)
 {
 	for (int i = 0; i < j; i++)
 	{
@@ -248,7 +248,7 @@ void Print(int* arr, int j)
 }
 
 
-int* push_back(int* array, int& j, int k) //массив, размер, доп_элемент
+template<typename T> T* push_back(T* array, int& j, int k) //массив, размер, доп_элемент
 {
 	int* array_1 = new int[j + 1];
 	for (int i = 0; i < j; i++)
@@ -263,7 +263,7 @@ int* push_back(int* array, int& j, int k) //массив, размер, доп_�
 }
 
 
-int* push_front(int* array, int& j, int k) //массив, размер, доп_элемент
+template<typename T> T* push_front(T* array, int& j, int k) //массив, размер, доп_элемент
 {
 	int* array_1 = new int[j + 1];
 	for (int i = 1; i <= j; i++)
@@ -278,7 +278,7 @@ int* push_front(int* array, int& j, int k) //массив, размер, доп_
 }
 
 
-int* insert(int* array, int& j, int k, int ind) //массив, размер, доп_элемент, индекс
+template<typename T>  T* insert(T* array, int& j, int k, int ind) //массив, размер, доп_элемент, индекс
 {
 	int* array_1 = new int[j + 1];
 	for (int i = 0; i < ind; i++)
@@ -299,7 +299,7 @@ int* insert(int* array, int& j, int k, int ind) //массив, размер, д
 }
 
 
-int* pop_back(int* array, int& j) //массив, размер
+template<typename T> T* pop_back(T* array, int& j) //массив, размер
 {
 	int* array_1 = new int[j - 1];
 	for (int i = 0; i < j - 1; i++)
@@ -313,7 +313,7 @@ int* pop_back(int* array, int& j) //массив, размер
 }
 
 
-int* pop_front(int* array, int& j) //массив, размер
+template<typename T>  T* pop_front(T* array, int& j) //массив, размер
 {
 	int* array_1 = new int[j - 1];
 	for (int i = 1; i <= j - 1; i++)
@@ -326,7 +326,7 @@ int* pop_front(int* array, int& j) //массив, размер
 }
 
 
-int* erase(int* array, int& j, int ind) //массив, размер, индекс
+template<typename T> T* erase(T* array, int& j, int ind) //массив, размер, индекс
 {
 	int* array_1 = new int[j - 1];
 	for (int i = 0; i < ind; i++)
@@ -346,7 +346,7 @@ int* erase(int* array, int& j, int ind) //массив, размер, индек
 
 // Двумерные 
 
-void FillRand(int** array, int ROWS, int COLLS)
+template<typename T> void FillRand(T** array, int ROWS, int COLLS)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -357,7 +357,7 @@ void FillRand(int** array, int ROWS, int COLLS)
 
 
 
-void Print(int** array, int ROWS, int COLLS)
+template<typename T> void Print(T** array, int ROWS, int COLLS)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -371,7 +371,7 @@ void Print(int** array, int ROWS, int COLLS)
 }
 
 
-int** push_row_back(int** array, int& ROWS, int COLLS)
+template<typename T> T** push_row_back(T** array, int& ROWS, int COLLS)
 {
 	
 	int** array1 = new int* [ROWS+1];
@@ -391,7 +391,7 @@ int** push_row_back(int** array, int& ROWS, int COLLS)
 }
 
 
-int** push_row_front(int** array, int& ROWS, int COLLS)
+template<typename T> T** push_row_front(T** array, int& ROWS, int COLLS)
 {
 	int** array1 = new int* [ROWS + 1];
 	for (int i = 0; i < ROWS + 1; i++)
@@ -410,7 +410,7 @@ int** push_row_front(int** array, int& ROWS, int COLLS)
 }
 
 
-int** insert_row(int** array, int& ROWS, int COLLS, int index)
+template<typename T> T** insert_row(T** array, int& ROWS, int COLLS, int index)
 {
 	int** array1 = new int* [ROWS + 1];
 	for (int i = 0; i < ROWS + 1; i++)
@@ -432,7 +432,7 @@ int** insert_row(int** array, int& ROWS, int COLLS, int index)
 	return array1;
 }
 
-int** pop_row_back(int** array, int& ROWS, int COLLS)
+template<typename T> T** pop_row_back(T** array, int& ROWS, int COLLS)
 {
 
 	int** array1 = new int* [ROWS -1];
@@ -451,7 +451,7 @@ int** pop_row_back(int** array, int& ROWS, int COLLS)
 }
 
 
-int** pop_row_front(int** array, int& ROWS, int COLLS)
+template<typename T> T** pop_row_front(T** array, int& ROWS, int COLLS)
 {
 	int** array1 = new int* [ROWS- 1];
 	for (int i = 0; i < ROWS- 1; i++)
@@ -469,7 +469,7 @@ int** pop_row_front(int** array, int& ROWS, int COLLS)
 }
 
 
-int** erase_row(int** array, int& ROWS, int COLLS, int index)
+template<typename T> T** erase_row(T** array, int& ROWS, int COLLS, int index)
 {
 	int** array1 = new int* [ROWS - 1];
 	for (int i = 0; i < ROWS - 1; i++)
@@ -491,7 +491,7 @@ int** erase_row(int** array, int& ROWS, int COLLS, int index)
 }
 
 
-int** push_col_back(int** array, int ROWS, int& COLLS)
+template<typename T> T** push_col_back(T** array, int ROWS, int& COLLS)
 {
 
 	int** array1 = new int* [COLLS + 1];
@@ -510,7 +510,7 @@ int** push_col_back(int** array, int ROWS, int& COLLS)
 	return array1;
 }
 
-int** push_col_front(int** array, int ROWS, int& COLLS)
+template<typename T> T** push_col_front(T** array, int ROWS, int& COLLS)
 {
 
 	int** array1 = new int* [COLLS + 1];
@@ -532,7 +532,7 @@ int** push_col_front(int** array, int ROWS, int& COLLS)
 	return array1;
 }
 
-int** pop_col_back(int** array, int ROWS, int& COLLS)
+template<typename T> T** pop_col_back(T** array, int ROWS, int& COLLS)
 {
 
 	int** array1 = new int* [COLLS -1];
@@ -551,7 +551,7 @@ int** pop_col_back(int** array, int ROWS, int& COLLS)
 	return array1;
 }
 
-int** pop_col_front(int** array, int ROWS, int& COLLS)
+template<typename T> T** pop_col_front(T** array, int ROWS, int& COLLS)
 {
 
 	int** array1 = new int* [COLLS - 1];
@@ -573,7 +573,7 @@ int** pop_col_front(int** array, int ROWS, int& COLLS)
 	return array1;
 }
  
-int** insert_col(int** array, int ROWS, int& COLLS, int index)
+template<typename T> T** insert_col(T** array, int ROWS, int& COLLS, int index)
 {
 
 	int** array1 = new int* [COLLS + 1];
@@ -600,7 +600,7 @@ int** insert_col(int** array, int ROWS, int& COLLS, int index)
 	return array1;
 }
 
-int** erase_col(int** array, int ROWS, int& COLLS, int index)
+template<typename T> T** erase_col(T** array, int ROWS, int& COLLS, int index)
 {
 
 	int** array1 = new int* [COLLS - 1];
