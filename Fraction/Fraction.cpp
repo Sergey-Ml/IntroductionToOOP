@@ -53,7 +53,7 @@ public:
 		else
 			this->z = '+';
 	}
-
+	//   Constructor
 	Fraction(int x, int y, char z)
 	{
 		set_z(z);

@@ -248,23 +248,27 @@ bool operator!=(const Fraction& left, const Fraction& right)
 
 std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 {
-	if (obj.get_integer())os << obj.get_integer();
+	if (obj.get_integer())
+		os << obj.get_integer();
 	if (obj.get_numerator())
 	{
-		if (obj.get_integer()) cout << "(";
+		if (obj.get_integer()) 
+			cout << "(";
 		os << obj.get_numerator() << "/" << obj.get_denominator();
-		if (obj.get_integer()) cout << ")";
+		if (obj.get_integer())
+			cout << ")";
 	}
-	else if (obj.get_integer() == 0)os << 0;
+	else if (obj.get_integer() == 0)
+		os << 0;
 	return os;
 }
 
-//#define CONSTRUCTORS_CHECK
+#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define INCREMENT_CHECK
 //#define TYPE_CONVERSIONS_BASICS
 //#define CONVERSION_FROM_OTHER_TO_CLASS
-#define CONVERSION_FROM_CLASS_TO_OTHER
+//#define CONVERSION_FROM_CLASS_TO_OTHER
 //#define HOME_WORK_1
 //#define HOME_WORK_2
 
@@ -273,10 +277,12 @@ void main()
 	setlocale(LC_ALL, "");
 #ifdef CONSTRUCTORS_CHECK
 	Fraction A;			//Default constructor
-	A.print();
+	//A.print();
+	
 
 	Fraction B = 5;		//Single-argument constructor
-	B.print();
+	//B.print();
+	cout << B << endl;
 
 	Fraction C(1, 2);
 	C.print();
