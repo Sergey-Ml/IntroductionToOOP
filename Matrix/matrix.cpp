@@ -46,7 +46,7 @@ public:
 			{
 				for (int j = 0; j < this->COLS; j++)
 				{
-					array[i][j] = rand();
+					array[i][j] = rand()%10;
 				}
 			}
 		}
@@ -56,10 +56,12 @@ public:
 	//Constructor
 	Matrix(int ROWS, int COLS, int** array)
 	{
+		this->ROWS = ROWS;
+		this->COLS = COLS;
 		this-> array = new int* [ROWS];
 		for (int i = 0; i < ROWS; i++)
 		{
-			array[i] = new int[COLS];
+			this->array[i] = new int[COLS];
 		}
 		this->array = array;
 	}
@@ -88,6 +90,25 @@ public:
 		set_array();
 	}
 
+	Matrix(const Matrix& A)
+	{
+		this->ROWS = A.ROWS;
+		this->COLS = A.COLS;
+		this->array = new int* [ROWS];
+		for (int i = 0; i < ROWS; i++)
+		{
+			array[i] = new int[COLS];
+		}
+		for (int i = 0; i < ROWS; i++)
+		{
+			for (int j = 0; j < COLS; j++)
+			{
+				this->array[i][j] = A.array[i][j];
+			}
+		}
+
+	}
+
 	~Matrix()
 	{
 
@@ -102,9 +123,16 @@ public:
 	Matrix operator+(const Matrix& other)
 	{
 		Matrix C(ROWS, COLS);
+		for (int i = 0; i < ROWS; i++)
+		{
+			for (int j = 0; j < COLS; j++)
+			{
+				C.array[i][j] = 0;
+			}
+		}
 
-		if (!(this->ROWS = other.ROWS) && (this->COLS = other.COLS))
-			cout << "Матрицы не раывны, сложение невозможно" << endl;
+		if ((this->ROWS != other.ROWS) || (this->COLS != other.COLS))
+			cout << "Матрицы не равны, сложение невозможно" << endl;
 		else
 		{
 			
@@ -118,6 +146,92 @@ public:
 		}
 		return C;
 	}
+
+	Matrix operator-(const Matrix& other)
+	{
+		Matrix C(ROWS, COLS);
+		for (int i = 0; i < ROWS; i++)
+		{
+			for (int j = 0; j < COLS; j++)
+			{
+				C.array[i][j] = 0;
+			}
+		}
+
+		if ((this->ROWS != other.ROWS) || (this->COLS != other.COLS))
+			cout << "Матрицы не равны, вычитание невозможно" << endl;
+		else
+		{
+
+			for (int i = 0; i < ROWS; i++)
+			{
+				for (int j = 0; j < COLS; j++)
+				{
+					C.array[i][j] = this->array[i][j] - other.array[i][j];
+				}
+			}
+		}
+		return C;
+	}
+
+	Matrix operator*(const Matrix& other)
+	{
+		Matrix C(ROWS, other.COLS);
+		for (int i = 0; i < ROWS; i++)
+		{
+			for (int j = 0; j < other.COLS; j++)
+			{
+				C.array[i][j] = 0;
+			}
+		}
+
+		if ((this->ROWS != other.COLS) || (this->COLS != other.ROWS))
+			cout << "Умножение невозможно" << endl;
+		else
+		{
+
+			for (int i = 0; i < ROWS; i++)
+			{
+				for (int j = 0; j < other.COLS; j++)
+
+					for (int k = 0; k < COLS; k++)
+					{
+
+						{
+							C.array[i][j] += this->array[i][k] * other.array[k][j];
+						}
+					}
+			}
+		}
+		return C;
+	}
+
+
+	Matrix& operator=(const Matrix& other)
+	{
+		for (int i = 0; i < ROWS; i++)
+		{
+			delete[] array[i];
+		}
+		delete[] array;
+		this->ROWS = other.ROWS;
+		this->COLS = other.COLS;
+		this->array = new int* [ROWS];
+		for (int i = 0; i < ROWS; i++)
+		{
+			array[i] = new int[COLS];
+		}
+
+		for (int i = 0; i < ROWS; i++)
+		{
+			for (int j = 0; j < COLS; j++)
+			{
+			this->array[i][j] = other.array[i][j];
+			}
+		}
+		return *this;
+	}
+	
 
 }; 
 
@@ -139,11 +253,28 @@ void Print(int** array, int ROWS, int COLLS)
 
 }
 
+void Print(Matrix C)
+{
+
+	Print(C.get_array(), C.get_ROWS(), C.get_COLS());
+	cout << endl;
+}
+
+
 void main()
 {
+	setlocale(LC_ALL, "");
 	Matrix A(2,2);
+	Print(A);
 	Matrix B(2,2);
-	Matrix C(2,2);
-	Matrix C = A + B;
-	Print(C.get_array(), C.get_ROWS(), C.get_COLS());
+	Print(B);
+	Matrix C(3,3);
+	Print(C);
+	//C = A + C;
+	//Print(C);
+	//C = A - C ;
+	//Print(C);
+	C = A * B;
+	Print(C);
+
 }
