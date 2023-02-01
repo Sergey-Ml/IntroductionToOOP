@@ -58,8 +58,29 @@ public:
 		this->numerator = 0;
 		this->denominator = 1;
 		cout.width(WIDTH);
-		cout << std::left << "SingleArgumentConstructor:" << this << endl;
+		cout << std::left << "SingleArgumentConstructorInt:" << this << endl;
 	}
+
+	Fraction(double A)
+	{
+		this->integer = (int)A;
+		A = A - (int)A;
+		int T = 1;
+		while (A != (int)A)
+		{
+			A = A * 10;
+			T = T * 10;
+		}
+		this->numerator = A;
+		this->denominator = T;
+		reduce();
+		cout.width(WIDTH);
+		cout << std::left << "SingleArgumentConstructorDouble:" << this << endl;
+	}
+
+
+
+
 	Fraction(int numerator, int denominator)
 	{
 		this->integer = 0;
@@ -89,6 +110,8 @@ public:
 		cout.width(WIDTH);
 		cout << std::left << "Destructor:" << this << endl;
 	}
+
+	
 
 	//					Operators:
 	Fraction& operator=(const Fraction& other)
@@ -131,6 +154,9 @@ public:
 	{
 		return integer + (double)numerator / denominator;
 	}
+	
+
+
 
 	//					Methods:
 	Fraction& to_proper()
@@ -248,7 +274,7 @@ bool operator!=(const Fraction& left, const Fraction& right)
 
 std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 {
-	if (obj.get_integer())
+	if (obj.get_integer())        
 		os << obj.get_integer();
 	if (obj.get_numerator())
 	{
@@ -261,34 +287,52 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 	else if (obj.get_integer() == 0)
 		os << 0;
 	return os;
+} 
+
+std::istream& operator>>(std::istream& os, Fraction& obj)
+{
+	int a;
+	cout << "¬ведите целую часть" << endl;
+	//cout << endl;
+	os >> a;
+	obj.set_integer(a);
+	cout << "¬ведите числитель" << endl;
+	os >> a;
+	obj.set_numerator(a);
+	cout << "¬ведите знаменатель" << endl;
+	os >> a;
+	obj.set_denominator(a);
+	return os;
 }
 
-#define CONSTRUCTORS_CHECK
+
+//#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define INCREMENT_CHECK
 //#define TYPE_CONVERSIONS_BASICS
 //#define CONVERSION_FROM_OTHER_TO_CLASS
 //#define CONVERSION_FROM_CLASS_TO_OTHER
 //#define HOME_WORK_1
-//#define HOME_WORK_2
+#define HOME_WORK_2
 
 void main()
 {
 	setlocale(LC_ALL, "");
 #ifdef CONSTRUCTORS_CHECK
-	Fraction A;			//Default constructor
-	//A.print();
-	
+	//Fraction A;			//Default constructor
+	////A.print();
+	//
 
-	Fraction B = 5;		//Single-argument constructor
-	//B.print();
-	cout << B << endl;
+	//Fraction B = 5;		//Single-argument constructor
+	////B.print();
+	//cout << B << endl;
 
-	Fraction C(1, 2);
-	C.print();
+	//Fraction C(1, 2);
+	//C.print();
 
-	Fraction D(2, 3, 0);
-	D.print();
+	Fraction D(2, 3, 1);
+	cout << D << endl;
+	//D.print();
 
 	Fraction E = D;		//CopyConstructor
 	E.print();
@@ -411,7 +455,7 @@ operator type()const
 
 #ifdef HOME_WORK_1
 	Fraction A;
-	cout << "¬ведите простую дробь: ";
+	//cout << "¬ведите простую дробь: ";
 	cin >> A;
 	cout << A << endl;
 #endif // HOME_WORK_1
