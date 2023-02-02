@@ -50,7 +50,7 @@ public:
 		cout.width(WIDTH);
 		cout << std::left << "CopyConstructor:" << this << endl;
 	}
-	String(String&& other):size(other.size), str(other.size)
+	String(String&& other):size(other.size), str(other.str)
 	{
 		this->size = other.size;
 		this->str = other.str;
